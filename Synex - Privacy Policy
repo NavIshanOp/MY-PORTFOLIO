@@ -1,36 +1,39 @@
 # **Synex Bot - Privacy Policy**
 
 ## **1. Introduction**
-This Privacy Policy explains how **Synex**, a Discord bot owned and operated by **Ishan Jaiswal**, collects, uses, and discloses information about users who interact with the bot. By using Synex, you agree to the collection and use of information in accordance with this policy.
+This Privacy Policy outlines how **Synex**, a Discord bot owned and operated by **Ishan Jaiswal** ("we," "us," or "our"), collects, uses, and discloses information about users who interact with the bot. By using Synex, you acknowledge and agree to the practices described in this policy.
 
 ## **2. Information We Collect**
-- **User Data**: Synex may collect user data such as User IDs, Server IDs, and messages required to process commands and provide functionalities like Moderation, Auto Moderation, Music, Economy, and more.
-- **Server Data**: Information about the server, including server settings, roles, and channels, may be collected to enable Synex's features like Admin Configuration, Ticket Systems, and Invite Tracking.
-- **Logs**: Synex may maintain logs of interactions and commands executed within the bot to improve performance and troubleshoot issues.
+- **User Data**: We may collect data such as User IDs, Server IDs, and messages necessary to process commands and provide Synex's features, including moderation, music, giveaways, and more.
+- **Server Data**: Information about your Discord server, such as settings, roles, and channels, may be collected to support Synex's functionalities like Admin Configuration and Ticket Systems.
+- **Logs**: We may keep logs of interactions and commands executed within the bot to improve service quality and address technical issues.
 
 ## **3. How We Use Your Information**
-- **Service Provision**: The data collected is used to operate and provide the functionalities of Synex, including but not limited to moderation, information gathering, giveaways, and music services.
-- **Improvement**: Data may be used to improve Synex's performance, add new features, and ensure a better user experience.
-- **Security**: Information is also used to enhance the security of the bot and its users, including preventing abuse and unauthorized access.
+- **Service Operation**: The data collected is essential for Synex to function as intended. This includes enabling moderation, providing music services, managing giveaways, and other features.
+- **Improvement**: Data may be used to enhance Synex's performance, develop new features, and improve user experience.
+- **Security**: We use your information to help secure Synex, including preventing misuse or unauthorized access.
 
 ## **4. Data Sharing and Disclosure**
-- **Third-Party Services**: Synex does not share your data with third parties except as necessary to operate the bot, such as with Discord's API.
-- **Legal Requirements**: We may disclose your information if required to do so by law or in response to valid requests by public authorities (e.g., a court or government agency).
+- **No Third-Party Sharing**: We do not share your data with third parties, except as necessary to operate Synex, such as with Discord's API.
+- **Legal Compliance**: We may disclose your data if required by law or in response to valid legal requests from public authorities.
 
 ## **5. Data Retention**
-- **Duration**: Synex retains user data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. Data may be deleted upon request or if it is no longer needed for the bot's operations.
-- **Data Deletion**: Users may request the deletion of their data by contacting the bot owner via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+- **Retention Period**: We retain data only as long as necessary for Synex to function and fulfill the purposes outlined in this Privacy Policy. Data may be deleted upon request or when it is no longer needed.
+- **Data Deletion Requests**: Users may request data deletion by contacting us via GitHub at [NavIshanOp](https://github.com/NavIshanOp). We will make reasonable efforts to comply with such requests but cannot guarantee immediate deletion.
 
 ## **6. Security**
-- **Protection**: We implement appropriate security measures to protect your information from unauthorized access, disclosure, alteration, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure.
+- **Security Measures**: We take reasonable precautions to protect your data from unauthorized access or disclosure. However, no online service is entirely secure, and we cannot guarantee absolute security.
 
-## **7. Changes to This Privacy Policy**
-- **Updates**: We may update this Privacy Policy from time to time. Any changes will be posted here with an updated revision date. Continued use of Synex after such changes will constitute your acceptance of the new policy.
+## **7. Disclaimer and Limitation of Liability**
+- **No Warranties**: Synex is provided "as is," without warranties of any kind, either express or implied. We do not guarantee that Synex will be free from errors, bugs, or interruptions.
+- **Limitation of Liability**: In no event shall we be liable for any direct, indirect, incidental, or consequential damages arising out of your use of Synex. This includes, but is not limited to, loss of data, revenue, or profits, even if we have been advised of the possibility of such damages.
 
-## **8. Your Rights**
-- **Access**: You have the right to access the data we hold about you.
-- **Correction**: You have the right to request correction of any inaccurate data.
-- **Deletion**: You have the right to request the deletion of your data.
+## **8. Changes to This Privacy Policy**
+- **Modifications**: We reserve the right to modify this Privacy Policy at any time. Any changes will be posted here with an updated revision date. Your continued use of Synex after such changes constitutes your acceptance of the new policy.
+- **Notification**: We may, at our discretion, notify you of significant changes to this policy, but are not obligated to do so.
 
-## **9. Contact Information**
-If you have any questions or concerns about this Privacy Policy, please contact the bot owner via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+## **9. Governing Law**
+This Privacy Policy is governed by and construed in accordance with the laws of the jurisdiction in which we reside. Any disputes arising from this policy shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
+
+## **10. Contact Information**
+If you have any questions or concerns about this Privacy Policy, please contact us via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
