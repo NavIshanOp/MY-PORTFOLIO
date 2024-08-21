@@ -1,28 +1,38 @@
 # **Synex Bot - Terms of Service**
 
-## **1. Introduction**
-Welcome to **Synex**, a versatile Discord bot owned and operated by **Ishan Jaiswal**. By using Synex, you agree to comply with these Terms of Service. If you disagree with any part of these terms, you may not use the bot.
+## **1. Acceptance of Terms**
+By using Synex, a Discord bot owned by **Ishan Jaiswal** ("we," "us," "our"), you ("the user") agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should immediately stop using the bot.
 
-## **2. Usage**
-- Synex is designed to provide various functionalities, including but not limited to Moderation, Auto Moderation, Music, Giveaways, Ticket Systems, Economy, Fun commands, and more.
-- By inviting and using Synex on your Discord server, you agree that the bot will have access to your server's data as required for its functions.
-- The bot must not be used for any unlawful or malicious activities. You agree not to use Synex in any way that could harm, disable, overburden, or impair the bot or interfere with any other party's use of the bot.
+## **2. Use of Service**
+- **Provided "As Is"**: Synex is provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. We disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+- **No Guarantee of Availability**: We do not guarantee that Synex will be available at any particular time or location, or that the service will be secure, uninterrupted, or error-free.
 
-## **3. Data Collection and Privacy**
-- Synex collects data to function effectively, such as user IDs, server IDs, and messages required for processing commands.
-- Data is stored securely and is not shared with third parties except as necessary for the operation of the bot.
-- You can request data removal by contacting the bot owner via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+## **3. Limitation of Liability**
+- **Maximum Disclaimer**: To the maximum extent permitted by law, we shall not be liable for any direct, indirect, incidental, consequential, special, punitive, or exemplary damages, including but not limited to damages for loss of profits, goodwill, use, data, or other intangible losses, resulting from (a) the use or inability to use Synex; (b) unauthorized access to or alteration of your transmissions or data; (c) any other matter relating to Synex.
+- **No Liability for Content**: We are not responsible for any content generated, transmitted, or stored by users of Synex. We do not endorse or guarantee the accuracy, completeness, or usefulness of any content, and are not liable for any actions taken based on such content.
+- **Indemnification**: You agree to indemnify and hold harmless **Ishan Jaiswal**, Synex, and any affiliates, from any claims, damages, losses, liabilities, costs, or expenses (including attorney's fees) arising out of your use of Synex or your violation of these Terms of Service.
 
-## **4. Limitations of Liability**
-- Synex is provided "as is" without any warranties of any kind, either express or implied. The owner is not liable for any damages arising from the use or inability to use the bot.
-- The bot owner is not responsible for any content that Synex may generate or manage on your server.
+## **4. Data and Privacy**
+- **No Responsibility for Data**: While we strive to protect your data, we assume no liability for any unauthorized access, misuse, or loss of data. Users are responsible for securing their own data and understanding the risks involved.
+- **Data Retention and Deletion**: We retain data as necessary to operate Synex. We are not responsible for any data retained or deleted by Synex and provide no guarantees regarding data deletion requests.
 
-## **5. Modifications to the Service and Terms**
-- The bot owner reserves the right to modify or discontinue Synex at any time without prior notice.
-- The owner may also update these Terms of Service from time to time. Continued use of Synex after such changes constitutes acceptance of the new terms.
+## **5. Intellectual Property**
+- **No Warranties for Third-Party Content**: Synex may interact with third-party content (e.g., music, images). We do not guarantee that this content is free from intellectual property claims and assume no liability for any such claims.
 
-## **6. Governing Law**
-- These terms shall be governed by and interpreted in accordance with the laws of the jurisdiction in which the bot owner resides.
+## **6. User Disputes**
+- **No Responsibility for User Disputes**: We are not liable for disputes between users, or between users and third parties. Users assume all risks associated with using Synex, including any potential disputes.
 
-## **7. Contact Information**
-- If you have any questions or concerns about these Terms of Service, please contact the bot owner via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+## **7. Compliance with Discord’s Terms**
+- **No Liability for Discord Actions**: We are not responsible for any actions taken by Discord against users or the bot itself, including but not limited to account bans, bot removal, or other penalties. Users are responsible for complying with Discord's Terms of Service and Developer Policies.
+
+## **8. Termination of Service**
+- **Right to Terminate**: We reserve the right to modify, suspend, or terminate Synex at any time, with or without notice, and without liability to you. We are not liable for any damages arising from the termination of service.
+
+## **9. Changes to Terms**
+- **Right to Modify**: We reserve the right to modify these Terms of Service at any time. Continued use of Synex after such modifications constitutes your acceptance of the new terms.
+
+## **10. Governing Law**
+These Terms of Service are governed by and construed in accordance with the laws of the jurisdiction in which **Ishan Jaiswal** resides. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
+
+## **11. Contact Information**
+For any questions regarding these Terms of Service, contact **Ishan Jaiswal** via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
