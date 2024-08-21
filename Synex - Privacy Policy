@@ -1,39 +1,32 @@
 # **Synex Bot - Privacy Policy**
 
 ## **1. Introduction**
-This Privacy Policy outlines how **Synex**, a Discord bot owned and operated by **Ishan Jaiswal** ("we," "us," or "our"), collects, uses, and discloses information about users who interact with the bot. By using Synex, you acknowledge and agree to the practices described in this policy.
+This Privacy Policy outlines how **Synex**, a Discord bot owned by **Ishan Jaiswal** ("we," "us," "our"), collects, uses, and discloses information about users who interact with the bot. By using Synex, you acknowledge and agree to the practices described in this policy.
 
 ## **2. Information We Collect**
-- **User Data**: We may collect data such as User IDs, Server IDs, and messages necessary to process commands and provide Synex's features, including moderation, music, giveaways, and more.
-- **Server Data**: Information about your Discord server, such as settings, roles, and channels, may be collected to support Synex's functionalities like Admin Configuration and Ticket Systems.
-- **Logs**: We may keep logs of interactions and commands executed within the bot to improve service quality and address technical issues.
+- **Minimal Data Collection**: Synex collects only the data necessary to operate the bot’s core functions. This may include User IDs, Server IDs, and basic message data.
+- **No Sensitive Data**: We do not intentionally collect sensitive personal data. Any such data provided by users is done so at their own risk.
 
 ## **3. How We Use Your Information**
-- **Service Operation**: The data collected is essential for Synex to function as intended. This includes enabling moderation, providing music services, managing giveaways, and other features.
-- **Improvement**: Data may be used to enhance Synex's performance, develop new features, and improve user experience.
-- **Security**: We use your information to help secure Synex, including preventing misuse or unauthorized access.
+- **Service Operation Only**: Data is used strictly for operating Synex’s core features (e.g., moderation, music, giveaways).
+- **No Sharing of Data**: We do not sell, trade, or otherwise transfer your data to third parties, except as necessary to operate Synex (e.g., interactions with Discord’s API).
 
-## **4. Data Sharing and Disclosure**
-- **No Third-Party Sharing**: We do not share your data with third parties, except as necessary to operate Synex, such as with Discord's API , Mongo DB etc.
-- **Legal Compliance**: We may disclose your data if required by law or in response to valid legal requests from public authorities.
+## **4. Data Retention and Deletion**
+- **Discretionary Data Retention**: We retain data only as long as necessary to operate Synex. However, we make no guarantees regarding the retention or deletion of any data.
+- **No Guarantees for Deletion Requests**: Users may request data deletion, but we make no guarantees that data will be deleted immediately or at all.
 
-## **5. Data Retention**
-- **Retention Period**: We retain data only as long as necessary for Synex to function and fulfill the purposes outlined in this Privacy Policy. Data may be deleted upon request or when it is no longer needed.
-- **Data Deletion Requests**: Users may request data deletion by contacting us via GitHub at [NavIshanOp](https://github.com/NavIshanOp). We will make reasonable efforts to comply with such requests but cannot guarantee immediate deletion.
+## **5. Security**
+- **No Warranties for Security**: While we implement reasonable security measures, we do not guarantee the security of your data. Users interact with Synex at their own risk.
 
-## **6. Security**
-- **Security Measures**: We take reasonable precautions to protect your data from unauthorized access or disclosure. However, no online service is entirely secure, and we cannot guarantee absolute security.
+## **6. Limitation of Liability**
+- **No Liability for Data Breaches**: We are not liable for any data breaches, unauthorized access, or misuse of data. Users acknowledge and accept the inherent risks of using Synex.
+- **No Warranties for Data Accuracy**: We do not guarantee the accuracy, completeness, or reliability of any data processed by Synex.
 
-## **7. Disclaimer and Limitation of Liability**
-- **No Warranties**: Synex is provided "as is," without warranties of any kind, either express or implied. We do not guarantee that Synex will be free from errors, bugs, or interruptions.
-- **Limitation of Liability**: In no event shall we be liable for any direct, indirect, incidental, or consequential damages arising out of your use of Synex. This includes, but is not limited to, loss of data, revenue, or profits, even if we have been advised of the possibility of such damages.
+## **7. Changes to This Privacy Policy**
+- **Right to Modify**: We reserve the right to modify this Privacy Policy at any time. Continued use of Synex after such modifications constitutes your acceptance of the new policy.
 
-## **8. Changes to This Privacy Policy**
-- **Modifications**: We reserve the right to modify this Privacy Policy at any time. Any changes will be posted here with an updated revision date. Your continued use of Synex after such changes constitutes your acceptance of the new policy.
-- **Notification**: We may, at our discretion, notify you of significant changes to this policy, but are not obligated to do so.
+## **8. Governing Law**
+This Privacy Policy is governed by and construed in accordance with the laws of the jurisdiction in which **Ishan Jaiswal** resides. Any disputes arising from this policy shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
 
-## **9. Governing Law**
-This Privacy Policy is governed by and construed in accordance with the laws of the jurisdiction in which we reside. Any disputes arising from this policy shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
-
-## **10. Contact Information**
-If you have any questions or concerns about this Privacy Policy, please contact us via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+## **9. Contact Information**
+For any questions or concerns regarding this Privacy Policy, contact **Ishan Jaiswal** via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
