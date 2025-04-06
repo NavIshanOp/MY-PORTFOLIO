@@ -39,7 +39,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
-        16 | Programmer | President at NavTantra - Robotics Club | IoT & Robotics Enthusiast | Innovating with Code and Connected Devices
+        17 | Programmer | President at NavTantra - Robotics Club | IoT & Robotics Enthusiast | Innovating with Code and Connected Devices
       </Subtitle>
     </HeroWrapper>
   );
