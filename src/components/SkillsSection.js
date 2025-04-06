@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaJs, FaPython, FaHtml5, FaLinux } from 'react-icons/fa';
-import { SiCplusplus } from 'react-icons/si';
 import { GiCircuitry, GiRobotGolem } from 'react-icons/gi';
 
 const SkillsWrapper = styled.section`

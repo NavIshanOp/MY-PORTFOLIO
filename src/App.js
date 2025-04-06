@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
           </Routes>
         </ContentWrapper>
         <Footer />
