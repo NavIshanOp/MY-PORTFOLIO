@@ -88,6 +88,22 @@ const projectsData = [
     image: 'https://i.imgur.com/9PHAF7R.png',
   },
   {
+    title: 'ishan-translator',
+    description: "Simple nodejs library for talking to Google's Translate API.",
+    tags: ['JavaScript', 'Node.js'],
+    github: 'https://github.com/NavIshanOp/ishan-Translator',
+    demo: 'https://www.npmjs.com/package/@navishanop/ishan-translator',
+    image: 'https://i.imgur.com/mYwxOZx.png',
+  },
+  {
+    title: 'Waifu.it wrapper.',
+    description: "Waifu.it wrapper, Generate random stuff with a huge database.",
+    tags: ['JavaScript', 'Node.js'],
+    github: 'https://github.com/NavIshanOp/waifu-up',
+    demo: 'https://www.npmjs.com/package/waifu-up',
+    image: 'https://i.imgur.com/rIgKWJA.png',
+  },
+  {
     title: 'Meetify',
     description: "Video calling website with screen share.",
     tags: ['TypeScript', 'CSS', 'HTML'],
