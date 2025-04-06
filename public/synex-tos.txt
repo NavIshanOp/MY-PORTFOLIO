@@ -1,0 +1,39 @@
+# **Synex Bot - Terms of Service**
+
+## **1. Acceptance of Terms**
+By using Synex, a Discord bot owned by **Ishan Jaiswal** ("we," "us," "our"), you ("the user") agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should immediately stop using the bot.
+
+## **2. Use of Service**
+- **Provided "As Is"**: Synex is provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. We disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+- **No Guarantee of Availability**: We do not guarantee that Synex will be available at any particular time or location, or that the service will be secure, uninterrupted, or error-free.
+
+## **3. Limitation of Liability**
+- **Maximum Disclaimer**: To the maximum extent permitted by law, we shall not be liable for any direct, indirect, incidental, consequential, special, punitive, or exemplary damages, including but not limited to damages for loss of profits, goodwill, use, data, or other intangible losses, resulting from (a) the use or inability to use Synex; (b) unauthorized access to or alteration of your transmissions or data; (c) any other matter relating to Synex.
+- **No Liability for Content**: We are not responsible for any content generated, transmitted, or stored by users of Synex. We do not endorse or guarantee the accuracy, completeness, or usefulness of any content, and are not liable for any actions taken based on such content.
+- **Indemnification**: You agree to indemnify and hold harmless **Ishan Jaiswal**, Synex, and any affiliates, from any claims, damages, losses, liabilities, costs, or expenses (including attorney's fees) arising out of your use of Synex or your violation of these Terms of Service.
+
+## **4. Data and Privacy**
+- **No Responsibility for Data**: While we strive to protect your data, we assume no liability for any unauthorized access, misuse, or loss of data. Users are responsible for securing their own data and understanding the risks involved.
+- **Data Retention and Deletion**: We retain data as necessary to operate Synex. We are not responsible for any data retained or deleted by Synex and provide no guarantees regarding data deletion requests.
+
+## **5. Intellectual Property**
+- **No Warranties for Third-Party Content**: Synex may interact with third-party content (e.g., music, images). We do not guarantee that this content is free from intellectual property claims and assume no liability for any such claims.
+
+## **6. User Disputes**
+- **No Responsibility for User Disputes**: We are not liable for disputes between users, or between users and third parties. Users assume all risks associated with using Synex, including any potential disputes.
+
+## **7. Compliance with Discord’s Terms**
+- **No Liability for Discord Actions**: We are not responsible for any actions taken by Discord against users or the bot itself, including but not limited to account bans, bot removal, or other penalties. Users are responsible for complying with Discord's Terms of Service and Developer Policies.
+
+## **8. Termination of Service**
+- **Right to Terminate**: We reserve the right to modify, suspend, or terminate Synex at any time, with or without notice, and without liability to you. We are not liable for any damages arising from the termination of service.
+
+## **9. Changes to Terms**
+- **Right to Modify**: We reserve the right to modify these Terms of Service at any time. Continued use of Synex after such modifications constitutes your acceptance of the new terms.
+
+## **10. Governing Law**
+These Terms of Service are governed by and construed in accordance with the laws of the jurisdiction in which **Ishan Jaiswal** resides. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts in that jurisdiction.
+
+## **11. Contact Information**
+For any questions regarding these Terms of Service, contact **Ishan Jaiswal** via GitHub at [NavIshanOp](https://github.com/NavIshanOp).
+[Disocrd](https://ishandev.top/discord)
