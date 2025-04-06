@@ -60,6 +60,13 @@ const Thumb = styled.div`
 
 const projectsData = [
   {
+    title: 'Synex',
+    description: 'Ultimate Discord Bot: Moderation, Music, AI, Automation, Fun & More!',
+    tags: ['Node.js'],
+    demo: 'https://discord.com/oauth2/authorize?client_id=1273604845789515806&permissions=8&integration_type=0&scope=bot',
+    image: 'https://i.imgur.com/PzI987D.png',
+  },
+  {
     title: 'Blogs Website',
     description: 'A personal blog website built with React and Node.js.',
     tags: ['React', 'Node.js'],
