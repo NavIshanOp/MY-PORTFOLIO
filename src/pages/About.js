@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const AboutWrapper = styled.div`
+// ============ Global Styles & Animations ============
+
+const AboutWrapper = styled(motion.div)`
   padding: 3rem 2rem;
   min-height: 80vh;
   background: #121212;
@@ -10,6 +12,9 @@ const AboutWrapper = styled.div`
   color: #e0e0e0;
   position: relative;
   overflow: hidden;
+  @media (max-width: 600px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const Header = styled.h2`
@@ -18,6 +23,10 @@ const Header = styled.h2`
   margin-bottom: 1.5rem;
   position: relative;
   z-index: 2;
+  cursor: pointer;
+  @media (max-width: 600px) {
+    font-size: 2rem;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -26,6 +35,9 @@ const Paragraph = styled.p`
   margin: 1rem 0;
   position: relative;
   z-index: 2;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 const Link = styled.a`
@@ -58,6 +70,10 @@ const EasterEggButton = styled(motion.button)`
   position: relative;
   z-index: 2;
   animation: ${pulse} 2s infinite;
+  @media (max-width: 600px) {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
 `;
 
 const fadeIn = keyframes`
@@ -65,21 +81,51 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `;
 
-const HiddenContainer = styled(motion.div)`
+const ModalContainer = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; // Ensures content stacks vertically
   background: rgba(18, 18, 18, 0.95);
-  border: 2px solid #bb86fc;
+  border: 2px solid ${props => props.borderColor || '#bb86fc'};
   border-radius: 10px;
   padding: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  max-width: 500px;
-  transform: translate(-50%, -50%);
+  position: fixed; // Use fixed to center it relative to the viewport
+  top: 30%; // Center vertically
+  left: 9%; // Move further to the left
+  transform: translate(-50%, -50%); // Adjust for the element's size
+  width: 90%; // Responsive width
+  max-width: 500px; // Limit the maximum width
+  max-height: 80vh; // Prevent overflow on smaller screens
+  overflow-y: auto;
   text-align: center;
-  z-index: 10;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  z-index: 200; // Ensure it overlaps other elements
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
   animation: ${fadeIn} 0.5s ease-out;
+
+  @media (max-width: 1024px) {
+    padding: 1.8rem; // Adjust padding for tablets
+    width: 95%; // Take up more width on medium screens
+    max-width: 450px; // Reduce max width for tablets
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem; // Adjust padding for smaller tablets
+    width: 95%; // Take up almost full width on smaller screens
+    max-width: 400px; // Reduce max width for smaller tablets
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem; // Adjust padding for mobile devices
+    width: 95%; // Take up almost full width on mobile
+    max-width: 350px; // Reduce max width for smaller screens
+  }
+
+  @media (max-width: 360px) {
+    padding: 0.8rem; // Further reduce padding for very small screens
+    width: 95%; // Take up almost full width
+    max-width: 300px; // Reduce max width for very small screens
+  }
 `;
 
 const HiddenClose = styled.button`
@@ -92,6 +138,8 @@ const HiddenClose = styled.button`
   cursor: pointer;
   color: #e0e0e0;
 `;
+
+// ============ Particle Background ============
 
 const particleAnimation = keyframes`
   0% {
@@ -133,22 +181,123 @@ const generateParticles = (num) => {
   return particles;
 };
 
+// ============ Confetti Effect ============
+
+const confettiFall = keyframes`
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+`;
+
+const ConfettiPiece = styled.div`
+  position: absolute;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background-color: ${props => props.color || '#fff'};
+  opacity: 0.9;
+  transform: rotate(${props => props.rotation}deg);
+  animation: ${confettiFall} ${props => props.duration}s linear forwards;
+  left: ${props => props.left}%;
+`;
+
+const ConfettiContainer = ({ pieces }) => {
+  return (
+    <>
+      {pieces.map((piece, index) => (
+        <ConfettiPiece
+          key={index}
+          color={piece.color}
+          rotation={piece.rotation}
+          duration={piece.duration}
+          left={piece.left}
+        />
+      ))}
+    </>
+  );
+};
+
+const generateConfetti = (count = 20) => {
+  let pieces = [];
+  const colors = ['#ff6ec4', '#7873f5', '#03dac6', '#bb86fc', '#ffb74d'];
+  for (let i = 0; i < count; i++) {
+    pieces.push({
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.floor(Math.random() * 360),
+      duration: Math.random() * 2 + 2,
+      left: Math.random() * 100,
+    });
+  }
+  return pieces;
+};
+
+// ============ Main About Component with Multiple Easter Eggs ============
+
 const About = () => {
   const [showModal, setShowModal] = useState(false);
-  
+  const [showBonusModal, setShowBonusModal] = useState(false);
+  const [showLongPressModal, setShowLongPressModal] = useState(false);
+  const [headerTapCount, setHeaderTapCount] = useState(0);
+  const [confettiPieces, setConfettiPieces] = useState([]);
+
+  // Trigger confetti for 3 seconds when any secret is revealed
+  const triggerConfetti = () => {
+    setConfettiPieces(generateConfetti(30));
+    setTimeout(() => {
+      setConfettiPieces([]);
+    }, 3000);
+  };
+
   const handleEasterEggClick = () => {
     setShowModal(true);
+    triggerConfetti();
   };
-  
+
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleCloseBonusModal = () => {
+    setShowBonusModal(false);
+  };
+
+  const handleCloseLongPressModal = () => {
+    setShowLongPressModal(false);
+  };
+
+  // Bonus Easter Egg: tap the header 3 times to reveal a hidden bonus secret!
+  const handleHeaderTap = () => {
+    setHeaderTapCount(prev => prev + 1);
+    if (headerTapCount + 1 >= 3) {
+      setShowBonusModal(true);
+      triggerConfetti();
+      setHeaderTapCount(0);
+    }
+  };
+
+  // Long press on any paragraph (over 1 second) to trigger a secret
+  let pressTimer = null;
+  const handleParagraphMouseDown = () => {
+    pressTimer = setTimeout(() => {
+      setShowLongPressModal(true);
+      triggerConfetti();
+    }, 1000);
+  };
+
+  const handleParagraphMouseUp = () => {
+    clearTimeout(pressTimer);
   };
 
   return (
     <AboutWrapper>
       {generateParticles(30)}
-      <Header>About Me</Header>
-      <Paragraph>
+      {confettiPieces.length > 0 && <ConfettiContainer pieces={confettiPieces} />}
+      <Header onClick={handleHeaderTap}>About Me</Header>
+      <Paragraph 
+        onMouseDown={handleParagraphMouseDown} 
+        onMouseUp={handleParagraphMouseUp} 
+        onTouchStart={handleParagraphMouseDown}
+        onTouchEnd={handleParagraphMouseUp}
+      >
         I’m a 17-year-old programmer passionate about IoT and Robotics—constantly exploring innovative ways to merge technology with everyday life.
       </Paragraph>
       <Paragraph>
@@ -173,7 +322,7 @@ const About = () => {
       </EasterEggButton>
       <AnimatePresence>
         {showModal && (
-          <HiddenContainer
+          <ModalContainer
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -186,7 +335,44 @@ const About = () => {
             <Paragraph>
               [Easter Egg Code: <code>{`if (curiosity > 100) { innovate(); }`}</code>]
             </Paragraph>
-          </HiddenContainer>
+          </ModalContainer>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showBonusModal && (
+          <ModalContainer
+            borderColor="#03dac6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+          >
+            <HiddenClose onClick={handleCloseBonusModal}>×</HiddenClose>
+            <h3>Bonus Secret Unlocked!</h3>
+            <Paragraph>
+              You've discovered an extra secret by tapping the header! Keep your curiosity alive.
+            </Paragraph>
+            <Paragraph>
+              [Bonus Code: <code>{`exploreMore();`}</code>]
+            </Paragraph>
+          </ModalContainer>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showLongPressModal && (
+          <ModalContainer
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+          >
+            <HiddenClose onClick={handleCloseLongPressModal}>×</HiddenClose>
+            <h3>Long Press Secret!</h3>
+            <Paragraph>
+              You held down long enough to reveal this hidden gem. Great job!
+            </Paragraph>
+            <Paragraph>
+              [Secret Code: <code>{`holdToReveal();`}</code>]
+            </Paragraph>
+          </ModalContainer>
         )}
       </AnimatePresence>
     </AboutWrapper>
