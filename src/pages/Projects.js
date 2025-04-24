@@ -82,9 +82,17 @@ const projectsData = [
   },
   {
     title: 'NavTantra',
+    description: "Sunbeam Lahartara's Robotics Club: Innovating minds, creating the future.",
+    tags: ['React', 'JSX', 'JavaScript'],
+    demo: 'https://navtantra.ishan.vip',
+    image: 'https://i.imgur.com/oOkQ4wS.png',
+  },
+  {
+    title: 'NavTantra - Old',
     description: "Sunbeam Lahartara's ATL Club: Innovating minds, creating the future.",
     tags: ['HTML', 'CSS', 'JavaScript'],
-    demo: 'https://navtantra.ishan.vip',
+    github: 'https://github.com/NavIshanOp/NavTantra',
+    demo: 'https://navtantraold.ishandev.top',
     image: 'https://i.imgur.com/9PHAF7R.png',
   },
   {
