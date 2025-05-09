@@ -17,7 +17,7 @@ const AboutWrapper = styled(motion.div)`
   }
 `;
 
-const Header = styled.h2`
+const Header = styled(motion.h2)`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 1.5rem;
@@ -29,7 +29,7 @@ const Header = styled.h2`
   }
 `;
 
-const Paragraph = styled.p`
+const Paragraph = styled(motion.p)`
   font-size: 1.1rem;
   line-height: 1.6;
   margin: 1rem 0;
@@ -40,7 +40,7 @@ const Paragraph = styled.p`
   }
 `;
 
-const Link = styled.a`
+const Link = styled(motion.a)`
   color: #bb86fc;
   font-weight: bold;
   text-decoration: none;
@@ -49,12 +49,6 @@ const Link = styled.a`
   &:hover {
     border-color: #bb86fc;
   }
-`;
-
-const pulse = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 `;
 
 const EasterEggButton = styled(motion.button)`
@@ -69,75 +63,53 @@ const EasterEggButton = styled(motion.button)`
   cursor: pointer;
   position: relative;
   z-index: 2;
-  animation: ${pulse} 2s infinite;
   @media (max-width: 600px) {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
 `;
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
+// ============ Modal Styles ============
 
 const ModalContainer = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; // Ensures content stacks vertically
-  background: rgba(18, 18, 18, 0.95);
-  border: 2px solid ${props => props.borderColor || '#bb86fc'};
-  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e1e1e;
   padding: 2rem;
-  position: fixed; // Use fixed to center it relative to the viewport
-  top: 30%; // Center vertically
-  left: 9%; // Move further to the left
-  transform: translate(-50%, -50%); // Adjust for the element's size
-  width: 90%; // Responsive width
-  max-width: 500px; // Limit the maximum width
-  max-height: 80vh; // Prevent overflow on smaller screens
-  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: #e0e0e0;
   text-align: center;
-  z-index: 200; // Ensure it overlaps other elements
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  animation: ${fadeIn} 0.5s ease-out;
-
-  @media (max-width: 1024px) {
-    padding: 1.8rem; // Adjust padding for tablets
-    width: 95%; // Take up more width on medium screens
-    max-width: 450px; // Reduce max width for tablets
-  }
-
-  @media (max-width: 768px) {
-    padding: 1.5rem; // Adjust padding for smaller tablets
-    width: 95%; // Take up almost full width on smaller screens
-    max-width: 400px; // Reduce max width for smaller tablets
-  }
-
-  @media (max-width: 480px) {
-    padding: 1rem; // Adjust padding for mobile devices
-    width: 95%; // Take up almost full width on mobile
-    max-width: 350px; // Reduce max width for smaller screens
-  }
-
-  @media (max-width: 360px) {
-    padding: 0.8rem; // Further reduce padding for very small screens
-    width: 95%; // Take up almost full width
-    max-width: 300px; // Reduce max width for very small screens
-  }
 `;
 
-const HiddenClose = styled.button`
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
+const HiddenClose = styled(motion.button)`
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #bb86fc;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: #e0e0e0;
+  &:hover {
+    color: #ff6ec4;
+  }
 `;
+
+// ============ Animation Variants ============
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, staggerChildren: 0.2 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 // ============ Particle Background ============
 
@@ -230,7 +202,7 @@ const generateConfetti = (count = 20) => {
   return pieces;
 };
 
-// ============ Main About Component with Multiple Easter Eggs ============
+// ============ Main About Component with Animations ============
 
 const About = () => {
   const [showModal, setShowModal] = useState(false);
@@ -239,7 +211,6 @@ const About = () => {
   const [headerTapCount, setHeaderTapCount] = useState(0);
   const [confettiPieces, setConfettiPieces] = useState([]);
 
-  // Trigger confetti for 3 seconds when any secret is revealed
   const triggerConfetti = () => {
     setConfettiPieces(generateConfetti(30));
     setTimeout(() => {
@@ -264,7 +235,6 @@ const About = () => {
     setShowLongPressModal(false);
   };
 
-  // Bonus Easter Egg: tap the header 3 times to reveal a hidden bonus secret!
   const handleHeaderTap = () => {
     setHeaderTapCount(prev => prev + 1);
     if (headerTapCount + 1 >= 3) {
@@ -274,7 +244,6 @@ const About = () => {
     }
   };
 
-  // Long press on any paragraph (over 1 second) to trigger a secret
   let pressTimer = null;
   const handleParagraphMouseDown = () => {
     pressTimer = setTimeout(() => {
@@ -288,35 +257,57 @@ const About = () => {
   };
 
   return (
-    <AboutWrapper>
+    <AboutWrapper
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {generateParticles(30)}
       {confettiPieces.length > 0 && <ConfettiContainer pieces={confettiPieces} />}
-      <Header onClick={handleHeaderTap}>About Me</Header>
-      <Paragraph 
-        onMouseDown={handleParagraphMouseDown} 
-        onMouseUp={handleParagraphMouseUp} 
+      <Header
+        onClick={handleHeaderTap}
+        variants={itemVariants}
+        whileHover={{ scale: 1.1 }}
+      >
+        About Me
+      </Header>
+      <Paragraph
+        onMouseDown={handleParagraphMouseDown}
+        onMouseUp={handleParagraphMouseUp}
         onTouchStart={handleParagraphMouseDown}
         onTouchEnd={handleParagraphMouseUp}
+        variants={itemVariants}
       >
         I’m a 17-year-old programmer passionate about IoT and Robotics—constantly exploring innovative ways to merge technology with everyday life.
       </Paragraph>
-      <Paragraph>
+      <Paragraph variants={itemVariants}>
         I hide clever secrets and interactive surprises in my work; a treasure hunt for those with a keen eye.
       </Paragraph>
-      <Paragraph>
+      <Paragraph variants={itemVariants}>
         Curious? Discover more on&nbsp;
-        <Link href="https://github.com/NavIshanOp" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://github.com/NavIshanOp"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ textDecoration: 'underline' }}
+        >
           GitHub
         </Link>
         &nbsp;and&nbsp;
-        <Link href="https://www.linkedin.com/in/ishan-jaiswal-2a799a30a/" target="_blank" rel="noopener noreferrer">
+        <Link
+          href="https://www.linkedin.com/in/ishan-jaiswal-2a799a30a/"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ textDecoration: 'underline' }}
+        >
           LinkedIn
         </Link>.
       </Paragraph>
-      <EasterEggButton 
+      <EasterEggButton
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleEasterEggClick}
+        variants={itemVariants}
       >
         Reveal the Hidden Secret
       </EasterEggButton>
@@ -341,7 +332,6 @@ const About = () => {
       <AnimatePresence>
         {showBonusModal && (
           <ModalContainer
-            borderColor="#03dac6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -350,9 +340,6 @@ const About = () => {
             <h3>Bonus Secret Unlocked!</h3>
             <Paragraph>
               You've discovered an extra secret by tapping the header! Keep your curiosity alive.
-            </Paragraph>
-            <Paragraph>
-              [Bonus Code: <code>{`exploreMore();`}</code>]
             </Paragraph>
           </ModalContainer>
         )}
@@ -368,9 +355,6 @@ const About = () => {
             <h3>Long Press Secret!</h3>
             <Paragraph>
               You held down long enough to reveal this hidden gem. Great job!
-            </Paragraph>
-            <Paragraph>
-              [Secret Code: <code>{`holdToReveal();`}</code>]
             </Paragraph>
           </ModalContainer>
         )}
