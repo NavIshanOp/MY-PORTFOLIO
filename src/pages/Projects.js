@@ -1,61 +1,120 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import ProjectCard from '../components/ProjectCard';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-// Wrapper for the whole projects section.
-const ProjectsWrapper = styled.div`
-  padding: 3rem 2rem;
-  min-height: 80vh;
-`;
-
-// A container wrapping both the scroll container and the custom scroll bar.
-const ScrollArea = styled.div`
-  position: relative;
-`;
-
-// Container for the horizontal scrolling of project cards.
-const HorizontalScrollContainer = styled.div`
-  overflow-x: auto;
-  white-space: nowrap;
+const ProjectsWrapper = styled(motion.div)`
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  background: ${({ theme }) => theme.background};
   display: flex;
+  flex-direction: column;
   align-items: center;
-  scroll-behavior: smooth;
-  cursor: grab;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
+  text-align: center;
+`;
+
+const Title = styled(motion.h2)`
+  color: ${({ theme }) => theme.accent};
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+const Subtitle = styled(motion.p)`
+  color: ${({ theme }) => theme.text};
+  max-width: 700px;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  opacity: 0.85;
+`;
+
+const ProjectsGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+`;
+
+const GlassCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    border-color: ${({ theme }) => theme.accent};
   }
 `;
 
-// Wrapper for each project card.
-const CardWrapper = styled.div`
-  display: inline-block;
-  margin-right: 2rem;
+const ProjectImage = styled(motion.img)`
+  width: 100%;
+  border-radius: 12px;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+
+  ${GlassCard}:hover & {
+    transform: scale(1.05);
+  }
 `;
 
-// Custom ScrollBar track.
-const ScrollBar = styled.div`
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  margin-top: 1rem;
-  position: relative;
-  cursor: pointer;
+const ProjectTitle = styled.h3`
+  color: ${({ theme }) => theme.accent};
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 `;
 
-// Draggable thumb of the scrollbar.
-const Thumb = styled.div`
-  height: 100%;
-  background: red; /* red line for visual indication */
-  border-radius: 4px;
-  width: ${({ width }) => width}px;
-  transform: translateX(${({ left }) => left}px);
-  position: absolute;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  transition: transform 0.1s ease-out;
+const ProjectDesc = styled.p`
+  color: ${({ theme }) => theme.text};
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+`;
+
+const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+const Tag = styled.span`
+  background: ${({ theme }) => theme.accent};
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+`;
+
+const Button = styled.a`
+  background: ${({ theme }) => theme.accent};
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.accent};
+  }
 `;
 
 const projectsData = [
@@ -121,193 +180,65 @@ const projectsData = [
   },
 ];
 
-const Projects = ({ projects = projectsData }) => {
-  // Duplicate the projects array for a seamless looping effect.
-  const duplicatedProjects = [...projects, ...projects];
-  const scrollRef = useRef(null);
-  const animationRef = useRef(null);
-
-  // Auto-scroll control.
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const [isDragging, setIsDragging] = useState(false);
-  // State for detecting if mouse is over the entire scroll area.
-  const [isHovered, setIsHovered] = useState(false);
-
-  // States for custom scrollbar thumb.
-  const [thumbLeft, setThumbLeft] = useState(0);
-  const [thumbWidth, setThumbWidth] = useState(0);
-
-  // Refs to track thumb drag start positions.
-  const isThumbDragging = useRef(false);
-  const thumbDragStartX = useRef(0);
-  const thumbDragStartLeft = useRef(0);
-
-  // Update the custom scroll thumb position and width based on container.
-  const updateThumb = useCallback(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-    // Effective scroll width is half because projects are duplicated.
-    const effectiveScrollWidth = container.scrollWidth / 2;
-    const scrollRange = effectiveScrollWidth - container.clientWidth;
-    const ratio = container.scrollLeft / scrollRange || 0;
-    const trackWidth = container.clientWidth;
-    const calculatedThumbWidth = (container.clientWidth / effectiveScrollWidth) * trackWidth;
-    const calculatedThumbLeft = ratio * (trackWidth - calculatedThumbWidth);
-    setThumbWidth(calculatedThumbWidth);
-    setThumbLeft(calculatedThumbLeft);
-  }, []);
-
-  // Auto-scroll using requestAnimationFrame.
-  const autoScroll = useCallback(() => {
-    const container = scrollRef.current;
-    if (container && isAutoScrolling && !isDragging && !isThumbDragging.current) {
-      // Use a smaller increment for smoother animation.
-      container.scrollLeft += 0.5;
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0;
-      }
-      updateThumb();
-      animationRef.current = requestAnimationFrame(autoScroll);
-    }
-  }, [isAutoScrolling, isDragging, updateThumb]);
-
-  // Start auto-scroll when appropriate.
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (container && container.scrollWidth > container.clientWidth && isAutoScrolling && !isHovered) {
-      animationRef.current = requestAnimationFrame(autoScroll);
-    }
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    };
-  }, [isAutoScrolling, isHovered, autoScroll]);
-
-  // Update thumb on scroll.
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const handleScroll = () => updateThumb();
-    container.addEventListener('scroll', handleScroll);
-    updateThumb();
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [updateThumb]);
-
-  // Disable auto-scroll when mouse enters the area.
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    setIsAutoScrolling(false);
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-  };
-
-  // Resume auto-scroll when mouse leaves after a brief delay.
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTimeout(() => {
-      setIsAutoScrolling(true);
-      animationRef.current = requestAnimationFrame(autoScroll);
-    }, 500);
-  };
-
-  // Mouse event handlers for container dragging.
-  const handleMouseDown = () => {
-    setIsDragging(true);
-    setIsAutoScrolling(false);
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    if (!isHovered) {
-      setIsAutoScrolling(true);
-      animationRef.current = requestAnimationFrame(autoScroll);
-    }
-  };
-
-  // Touch event handlers for mobile.
-  const handleTouchStart = () => {
-    setIsDragging(true);
-    setIsAutoScrolling(false);
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-    if (!isHovered) {
-      setIsAutoScrolling(true);
-      animationRef.current = requestAnimationFrame(autoScroll);
-    }
-  };
-
-  // Mouse events for dragging the custom scroll thumb.
-  const handleThumbMouseDown = (e) => {
-    e.stopPropagation();
-    isThumbDragging.current = true;
-    thumbDragStartX.current = e.clientX;
-    thumbDragStartLeft.current = thumbLeft;
-    setIsAutoScrolling(false);
-    if (animationRef.current) cancelAnimationFrame(animationRef.current);
-  };
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isThumbDragging.current) return;
-      const container = scrollRef.current;
-      const delta = e.clientX - thumbDragStartX.current;
-      let newThumbLeft = thumbDragStartLeft.current + delta;
-      const trackWidth = container.clientWidth;
-      const maxThumbLeft = trackWidth - thumbWidth;
-      if (newThumbLeft < 0) newThumbLeft = 0;
-      if (newThumbLeft > maxThumbLeft) newThumbLeft = maxThumbLeft;
-      setThumbLeft(newThumbLeft);
-      const effectiveScrollWidth = container.scrollWidth / 2;
-      const scrollRange = effectiveScrollWidth - container.clientWidth;
-      container.scrollLeft = (newThumbLeft / maxThumbLeft) * scrollRange;
-    };
-
-    const handleMouseUp = () => {
-      if (isThumbDragging.current) {
-        isThumbDragging.current = false;
-        if (!isHovered) {
-          setIsAutoScrolling(true);
-          animationRef.current = requestAnimationFrame(autoScroll);
-        }
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [thumbWidth, thumbLeft, isHovered, autoScroll]);
-
+const Projects = () => {
   return (
-    <ProjectsWrapper>
-      <h2>Projects</h2>
-      <ScrollArea onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <HorizontalScrollContainer
-          ref={scrollRef}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {duplicatedProjects.map((project, index) => (
-            <CardWrapper key={`card-${index}`}>
-              <ProjectCard {...project} />
-            </CardWrapper>
-          ))}
-        </HorizontalScrollContainer>
-        {/* Custom ScrollBar */}
-        <ScrollBar>
-          <Thumb
-            width={thumbWidth}
-            left={thumbLeft}
-            onMouseDown={handleThumbMouseDown}
-          />
-        </ScrollBar>
-      </ScrollArea>
+    <ProjectsWrapper
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      <Title
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        Projects
+      </Title>
+      <Subtitle
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        Here’s a glimpse of some of my work — blending creativity with code to bring ideas to life.
+      </Subtitle>
+
+      <ProjectsGrid
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15 },
+          },
+        }}
+      >
+        {projectsData.map((project, index) => (
+          <GlassCard
+            key={index}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ rotateX: 2, rotateY: -2 }}
+          >
+            <ProjectImage src={project.image} alt={project.title} />
+            <ProjectTitle>{project.title}</ProjectTitle>
+            <ProjectDesc>{project.description}</ProjectDesc>
+            <Tags>
+              {project.tags.map((tag, i) => (
+                <Tag key={i}>{tag}</Tag>
+              ))}
+            </Tags>
+            <Buttons>
+              {project.demo && <Button href={project.demo} target="_blank">Demo</Button>}
+              {project.github && <Button href={project.github} target="_blank">GitHub</Button>}
+            </Buttons>
+          </GlassCard>
+        ))}
+      </ProjectsGrid>
     </ProjectsWrapper>
   );
 };
